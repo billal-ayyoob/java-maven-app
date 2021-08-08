@@ -8,16 +8,20 @@ pipeline {
     stages {
         stage('SCM') {
             steps {
-                git url: 'https://github.com/billal-ayyoob/java-maven-app.git'
+                git branch: 'main'
+                url: https://github.com/billal-ayyoob/java-maven-app.git
             }
         }
-        stage('build && SonarQube analysis') {
+        stage('Build') {
             steps {
-                withSonarQubeEnv('My SonarQube Server') {
-                    // Optionally use a Maven environment you've configured already
-                    withMaven(maven:'Maven 3.5') {
-                        sh 'mvn clean package sonar:sonar'
-                    }
+                sh 'mvn -B -DskipTests clean package'
+            }
+        }
+        stage('Analysis with SonarQube') {
+            steps {
+                withSonarQubeEnv(credentialsId: 'f225455e-ea59-40fa-8af7-08176e86507a',
+                installationName: 'SQ') {
+                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:4.6.2.2472:sonar'
                 }
             }
         }
