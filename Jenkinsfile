@@ -8,8 +8,7 @@ pipeline {
     stages {
         stage('SCM') {
             steps {
-                git branch: 'main'
-                url: 'https://github.com/billal-ayyoob/java-maven-app.git'
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/billal-ayyoob/java-maven-app.git']]])
             }
         }
         stage('Build') {
