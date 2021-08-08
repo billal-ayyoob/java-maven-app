@@ -9,7 +9,7 @@ pipeline {
         stage('SCM') {
             steps {
                 git branch: 'main'
-                url: https://github.com/billal-ayyoob/java-maven-app.git
+                url: 'https://github.com/billal-ayyoob/java-maven-app.git'
             }
         }
         stage('Build') {
