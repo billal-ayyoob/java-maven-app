@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('SCM') {
             steps {
-                git url: https://github.com/billal-ayyoob/java-maven-app.git
+                git url: 'https://github.com/billal-ayyoob/java-maven-app.git'
             }
         }
         stage('build && SonarQube analysis') {
