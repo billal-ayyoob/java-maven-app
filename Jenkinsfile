@@ -15,7 +15,7 @@ pipeline {
             steps {
                 withSonarQubeEnv(credentialsId: 'f225455e-ea59-40fa-8af7-08176e86507a',
                 installationName: 'SQ') {
-                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:4.6.2.2472:sonar'
                 }
             }
         }
